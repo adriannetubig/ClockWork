@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Clockwork.API.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Clockwork.API.Controllers
 {
@@ -33,6 +35,20 @@ namespace Clockwork.API.Controllers
                 {
                     Console.WriteLine(" - {0}", CurrentTimeQuery.UTCTime);
                 }
+            }
+
+            return Ok(returnVal);
+        }
+
+        // Post api/currenttime
+        [HttpPost]
+        public IActionResult Post()
+        {
+            var returnVal = new List<CurrentTimeQuery>();
+
+            using (var db = new ClockworkContext())
+            {
+                returnVal = db.CurrentTimeQueries.ToList();
             }
 
             return Ok(returnVal);
