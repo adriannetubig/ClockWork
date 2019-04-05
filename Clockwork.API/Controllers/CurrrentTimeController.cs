@@ -1,57 +1,41 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Clockwork.API.Models;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using Clockwork.Business.Interfaces;
+using Clockwork.Data.Services;
+using Clockwork.Business.Services;
+using Clockwork.Data.Interfaces;
+using AutoMapper;
 
 namespace Clockwork.API.Controllers
 {
     [Route("api/[controller]")]
     public class CurrentTimeController : Controller
     {
+        private readonly IBusinessServiceCurrentTimeQuery _iBusinessServiceCurrentTimeQuery;
+        public CurrentTimeController ()
+        {
+            IDataServiceCurrentTimeQuery iDataServiceCurrentTimeQuery = new DataServiceCurrentTimeQuery();
+
+            var mapperConfiguration = new MapperConfiguration(cfg => { });
+            IMapper mapper = new Mapper(mapperConfiguration);
+
+            var businessServiceCurrentTimeQuery = new BusinessServiceCurrentTimeQuery(iDataServiceCurrentTimeQuery, mapper);
+
+            _iBusinessServiceCurrentTimeQuery = businessServiceCurrentTimeQuery;
+        }
         // GET api/currenttime
         [HttpGet]
         public IActionResult Get()
         {
-            var utcTime = DateTime.UtcNow;
-            var serverTime = DateTime.Now;
-            var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
+            var ipAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
 
-            var returnVal = new CurrentTimeQuery
-            {
-                UTCTime = utcTime,
-                ClientIp = ip,
-                Time = serverTime
-            };
-
-            using (var db = new ClockworkContext())
-            {
-                db.CurrentTimeQueries.Add(returnVal);
-                var count = db.SaveChanges();
-                Console.WriteLine("{0} records saved to database", count);
-
-                Console.WriteLine();
-                foreach (var CurrentTimeQuery in db.CurrentTimeQueries)
-                {
-                    Console.WriteLine(" - {0}", CurrentTimeQuery.UTCTime);
-                }
-            }
-
-            return Ok(returnVal);
+            return Ok(_iBusinessServiceCurrentTimeQuery.Create(ipAddress));
         }
 
         // Post api/currenttime
         [HttpPost]
         public IActionResult Post()
         {
-            var returnVal = new List<CurrentTimeQuery>();
-
-            using (var db = new ClockworkContext())
-            {
-                returnVal = db.CurrentTimeQueries.ToList();
-            }
-
-            return Ok(returnVal);
+            return Ok(_iBusinessServiceCurrentTimeQuery.Read());
         }
     }
 }

@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clockwork.Web", "Clockwork.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clockwork.Web.Tests", "Clockwork.Web.Tests\Clockwork.Web.Tests.csproj", "{7F442E44-EDD0-4605-BCDD-603BAA9984C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clockwork.Data", "Clockwork.Data\Clockwork.Data.csproj", "{1857892A-6829-4682-A13B-F6283C267935}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clockwork.Business", "Clockwork.Business\Clockwork.Business.csproj", "{CDCAEAF8-4E6B-4094-B116-93DD04B5603B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +30,14 @@ Global
 		{7F442E44-EDD0-4605-BCDD-603BAA9984C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F442E44-EDD0-4605-BCDD-603BAA9984C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F442E44-EDD0-4605-BCDD-603BAA9984C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1857892A-6829-4682-A13B-F6283C267935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1857892A-6829-4682-A13B-F6283C267935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1857892A-6829-4682-A13B-F6283C267935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1857892A-6829-4682-A13B-F6283C267935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDCAEAF8-4E6B-4094-B116-93DD04B5603B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDCAEAF8-4E6B-4094-B116-93DD04B5603B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDCAEAF8-4E6B-4094-B116-93DD04B5603B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDCAEAF8-4E6B-4094-B116-93DD04B5603B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

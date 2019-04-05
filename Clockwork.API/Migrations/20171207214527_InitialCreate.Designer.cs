@@ -10,7 +10,7 @@ using System;
 
 namespace Clockwork.API.Migrations
 {
-    [DbContext(typeof(ClockworkContext))]
+    //[DbContext(typeof(ClockworkContext))]
     [Migration("20171207214527_InitialCreate")]
     partial class InitialCreate
     {
