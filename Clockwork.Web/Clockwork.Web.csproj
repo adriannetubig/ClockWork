@@ -96,6 +96,12 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\package-lock.json" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>

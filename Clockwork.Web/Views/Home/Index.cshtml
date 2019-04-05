@@ -1,37 +1,82 @@
-﻿<script>
-    function UserAction() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("output").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "http://localhost:14168/api/currenttime", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
-    }
+﻿<div ng-app="myApp" ng-controller="myCtrl">
 
 
-    function GetRecords() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("output").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("POST", "http://localhost:14168/api/currenttime", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
+    <link rel="stylesheet" href="~/ClientApp/node_modules/bootstrap/dist/css/bootstrap.min.css">
 
-        console.log(xhttp.response);
-    }
-</script>
+    <script>
+        function UserAction() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("output").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "http://localhost:14168/api/currenttime", true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send();
+        }
 
-<h2>AWH Clockwork Project @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+/**/</script>
+
+    <h2>AWH Clockwork Project @ViewData["Version"] on @ViewData["Runtime"]!</h2>
 
 
-<button type="submit" onclick="UserAction()">Get the time</button>
+    <button type="submit" onclick="UserAction()">Get the time</button>
 
-<button type="submit" onclick="GetRecords()">Get all the time</button>
+    <button class="btn btn-primary" type="submit" ng-click="post()">Get all the time</button>
 
-<p id="output"></p>
+    <p id="output"></p>
+
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    currentTimeQueryId
+                </td>
+                <th>
+                    time
+                </th>
+                <th>
+                    clientIp
+                </th>
+                <th>
+                    utcTime
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="currentTime in currentTimes">
+                <td>
+                    {{currentTime.currentTimeQueryId}}
+                </td>
+                <td>
+                    {{currentTime.time}}
+                </td>
+                <td>
+                    {{currentTime.clientIp}}
+                </td>
+                <td>
+                    {{currentTime.utcTime}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="~/ClientApp/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/ClientApp/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/ClientApp/node_modules/angular/angular.min.js"></script>
+
+    <script>
+
+        var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+            $scope.post = function() {
+            $http.post("http://localhost:14168/api/currenttime")
+                .then(function (response) {
+                    $scope.currentTimes = response.data;
+                });
+      }
+        });
+        
+    </script>
+</div>
