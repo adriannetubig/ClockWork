@@ -75,7 +75,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ClientApp\Angular\" />
     <Folder Include="Content\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
@@ -88,6 +87,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientApp\Angular\app.module.js" />
+    <Content Include="ClientApp\Angular\Controller\CurrentTime.Controller.js" />
+    <Content Include="ClientApp\Angular\Service\CurrentTime.Service.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

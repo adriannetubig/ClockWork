@@ -16,14 +16,14 @@ namespace Clockwork.Business.Services
             _mapper = mapper;
         }
 
-        public CurrentTimeQuery Create(string clientIp)
+        public CurrentTimeQuery Read(string clientIp)
         {
             var currentTimeQuery = new CurrentTimeQuery
             {
                 ClientIp = clientIp
             };
             var currentTimeQueryEntity = _mapper.Map<Data.Entities.CurrentTimeQuery>(currentTimeQuery);
-            currentTimeQueryEntity = _iDataServiceCurrentTimeQuery.Create(currentTimeQueryEntity);
+            currentTimeQueryEntity = _iDataServiceCurrentTimeQuery.Read(currentTimeQueryEntity);
 
             return _mapper.Map<CurrentTimeQuery>(currentTimeQueryEntity);
         }

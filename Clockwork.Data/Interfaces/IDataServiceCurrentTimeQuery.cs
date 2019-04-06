@@ -5,7 +5,7 @@ namespace Clockwork.Data.Interfaces
 {
     public interface IDataServiceCurrentTimeQuery
     {
-        CurrentTimeQuery Create(CurrentTimeQuery currentTimeQuery);
+        CurrentTimeQuery Read(CurrentTimeQuery currentTimeQuery);
         List<CurrentTimeQuery> Read();
     }
 }

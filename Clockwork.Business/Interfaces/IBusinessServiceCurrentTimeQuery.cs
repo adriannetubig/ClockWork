@@ -5,7 +5,7 @@ namespace Clockwork.Business.Interfaces
 {
     public interface IBusinessServiceCurrentTimeQuery
     {
-        CurrentTimeQuery Create(string clientIp);
+        CurrentTimeQuery Read(string clientIp);
         List<CurrentTimeQuery> Read();
     }
 }

@@ -8,7 +8,7 @@ namespace Clockwork.Data.Services
 {
     public class DataServiceCurrentTimeQuery: IDataServiceCurrentTimeQuery
     {
-        public CurrentTimeQuery Create(CurrentTimeQuery currentTimeQuery)
+        public CurrentTimeQuery Read(CurrentTimeQuery currentTimeQuery)
         {
             using (var context = new ClockworkContext())
             {
