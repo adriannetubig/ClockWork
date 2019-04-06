@@ -8,10 +8,10 @@ using AutoMapper;
 namespace Clockwork.API.Controllers
 {
     [Route("api/[controller]")]
-    public class CurrentTimeController : Controller
+    public class CurrrentTimeController : Controller
     {
         private readonly IBusinessServiceCurrentTimeQuery _iBusinessServiceCurrentTimeQuery;
-        public CurrentTimeController ()
+        public CurrrentTimeController()
         {
             IDataServiceCurrentTimeQuery iDataServiceCurrentTimeQuery = new DataServiceCurrentTimeQuery();
 
@@ -22,17 +22,16 @@ namespace Clockwork.API.Controllers
 
             _iBusinessServiceCurrentTimeQuery = businessServiceCurrentTimeQuery;
         }
-        // GET api/currenttime
+
         [HttpGet]
         public IActionResult Get()
         {
-            var ipAddress = this.HttpContext.Connection.RemoteIpAddress.ToString();
+            var ipAddress = HttpContext.Connection.RemoteIpAddress.ToString();
 
             return Ok(_iBusinessServiceCurrentTimeQuery.Create(ipAddress));
         }
 
-        // Post api/currenttime
-        [HttpPost]
+        [HttpPost("Queries")]
         public IActionResult Post()
         {
             return Ok(_iBusinessServiceCurrentTimeQuery.Read());

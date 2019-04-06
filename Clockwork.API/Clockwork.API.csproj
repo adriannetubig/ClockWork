@@ -6,14 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\**" />
+    <Compile Remove="wwwroot\**" />
     <Content Remove="Migrations\**" />
+    <Content Remove="wwwroot\**" />
     <EmbeddedResource Remove="Migrations\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
     <None Remove="Migrations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-    <Folder Include="Models\" />
+    <None Remove="wwwroot\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +29,6 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\HomeController.cs" />
-    <Compile Remove="Models\Models.cs" />
   </ItemGroup>
 
   <ItemGroup>
