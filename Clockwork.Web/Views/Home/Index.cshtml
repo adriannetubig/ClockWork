@@ -1,124 +1,82 @@
-﻿@*<div ng-app="myApp" ng-controller="myCtrl">*@
-
+﻿
     <div ng-app="App" ng-controller="CurrentTimeController as Model">
-
-        @*<script>
-                function UserAction() {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            document.getElementById("output").innerHTML = this.responseText;
-                        }
-                    };
-                    xhttp.open("GET", "http://localhost:51479/api/currenttime", true);
-                    xhttp.setRequestHeader("Content-type", "application/json");
-                    xhttp.send();
-                }
-
-        /**/</script>*@
-
         <h2>AWH Clockwork Project @ViewData["Version"] on @ViewData["Runtime"]!</h2>
 
+        <button class="btn btn-primary" ng-click="Model.GetCurrentTime()">Get the time</button>
+        <div class="row">
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col">
+                        <label>CurrentTimeQueryId</label>
+                    </div>
+                    <div class="col">
+                        <span ng-bind="Model.CurrentTime.currentTimeQueryId"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>ClientIp</label>
+                    </div>
+                    <div class="col">
+                        <span ng-bind="Model.CurrentTime.clientIp"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col">
+                        <label>Time</label>
+                    </div>
+                    <div class="col">
+                        <span ng-bind="Model.CurrentTime.time"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>UTCTime</label>
+                    </div>
+                    <div class="col">
+                        <span ng-bind="Model.CurrentTime.utcTime"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        @*<button type="submit" onclick="UserAction()">Get the time</button>
-
-        <button class="btn btn-primary" type="submit" ng-click="post()">Get all the time</button>
-
-        <p id="output"></p>*@
-
-        <button type="submit" ng-click="Model.GetCurrentTime()">Get the time</button>
-
-        <button class="btn btn-primary" type="submit" ng-click="Model.GetCurrentTimeQueries()">Get all the time</button>
-
-        <p id="output"></p>
-
-
-        @*<table>
-            <thead>
-                <tr>
-                    <td>
-                        currentTimeQueryId
-                    </td>
-                    <th>
-                        time
-                    </th>
-                    <th>
-                        clientIp
-                    </th>
-                    <th>
-                        utcTime
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="currentTime in currentTimes">
-                    <td>
-                        {{currentTime.currentTimeQueryId}}
-                    </td>
-                    <td>
-                        {{currentTime.time}}
-                    </td>
-                    <td>
-                        {{currentTime.clientIp}}
-                    </td>
-                    <td>
-                        {{currentTime.utcTime}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>*@
-
-        <table>
-            <thead>
-                <tr>
-                    <td>
-                        currentTimeQueryId
-                    </td>
-                    <th>
-                        time
-                    </th>
-                    <th>
-                        clientIp
-                    </th>
-                    <th>
-                        utcTime
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="currentTime in Model.CurrentTimeQueries">
-                    <td>
-                        {{currentTime.currentTimeQueryId}}
-                    </td>
-                    <td>
-                        {{currentTime.time}}
-                    </td>
-                    <td>
-                        {{currentTime.clientIp}}
-                    </td>
-                    <td>
-                        {{currentTime.utcTime}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        {{Model.CurrentTimeQueries}}
-
-        @*<script src="~/ClientApp/node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="~/ClientApp/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="~/ClientApp/node_modules/angular/angular.min.js"></script>*@
-
-        @*<script>
-
-            var app = angular.module('myApp', []);
-        app.controller('myCtrl', function ($scope, $http) {
-                $scope.post = function() {
-                $http.post("http://localhost:51479/api/currenttime/Queries")
-                    .then(function (response) {
-                        $scope.currentTimes = response.data;
-                    });
-          }
-            });
-
-        </script>*@
+        <div class="row">
+            <button class="btn btn-primary" ng-click="Model.GetCurrentTimeQueries()">Get all the time</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            currentTimeQueryId
+                        </th>
+                        <th>
+                            time
+                        </th>
+                        <th>
+                            clientIp
+                        </th>
+                        <th>
+                            utcTime
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="currentTime in Model.CurrentTimeQueries">
+                        <td>
+                            {{currentTime.currentTimeQueryId}}
+                        </td>
+                        <td>
+                            {{currentTime.time}}
+                        </td>
+                        <td>
+                            {{currentTime.clientIp}}
+                        </td>
+                        <td>
+                            {{currentTime.utcTime}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
