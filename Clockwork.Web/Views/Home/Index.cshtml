@@ -1,9 +1,15 @@
 ﻿
     <div ng-app="App" ng-controller="CurrentTimeController as Model" ng-init="Model.PopulateTimeZones()">
         <h2>AWH Clockwork Project @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+        <div class="row">
+            <div class="col-sm-2">
+                <button class="btn btn-primary" ng-click="Model.GetCurrentTime()">Get the time</button>
+            </div>
+            <div class="col-sm">
+                <select class="form-control" ng-model="Model.SelectedBaseUtcOffset" ng-options="timeZone.BaseUtcOffset as timeZone.DisplayName for timeZone in Model.TimeZones"></select>
+            </div>
+        </div>
 
-        <button class="btn btn-primary" ng-click="Model.GetCurrentTime()">Get the time</button>
-        <select ng-model="Model.SelectedBaseUtcOffset" ng-options="timeZone.BaseUtcOffset as timeZone.DisplayName for timeZone in Model.TimeZones"></select>
         <div class="row">
             <div class="col-sm">
                 <div class="row">
@@ -42,9 +48,11 @@
                 </div>
             </div>
         </div>
-
+        <hr />
+        <button class="btn btn-primary" ng-click="Model.GetCurrentTimeQueries()">Get all the time</button>
+        <br />
+        <br />
         <div class="row">
-            <button class="btn btn-primary" ng-click="Model.GetCurrentTimeQueries()">Get all the time</button>
             <table class="table">
                 <thead>
                     <tr>
@@ -59,6 +67,9 @@
                         </th>
                         <th>
                             utcTime
+                        </th>
+                        <th>
+                            Offset
                         </th>
                     </tr>
                 </thead>
@@ -76,10 +87,11 @@
                         <td>
                             {{currentTime.utcTime}}
                         </td>
+                        <td>
+                            {{currentTime.offset}}
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
-        {{Model.selectedTimeZone}}
     </div>
