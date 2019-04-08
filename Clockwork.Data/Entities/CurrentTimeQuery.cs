@@ -12,5 +12,6 @@ namespace Clockwork.Data.Entities
         public DateTime Time { get; set; }
         public string ClientIp { get; set; }
         public DateTime UTCTime { get; set; }
+        public TimeSpan? Offset { get; set; }
     }
 }

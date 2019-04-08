@@ -13,10 +13,10 @@
             Queries: Queries
         };
 
-        function Read() {
+        function Read(offSet) {
             return $http({
                 method: 'GET',
-                url: 'http://localhost:51479/api/CurrentTime',
+                url: 'http://localhost:14168/api/CurrentTime/' + offSet,
                 headers: { 'Content-Type': 'application/json' }
             });
         }
@@ -24,7 +24,7 @@
         function Queries() {
             return $http({
                 method: 'POST',
-                url: 'http://localhost:51479/api/CurrentTime/Queries',
+                url: 'http://localhost:14168/api/CurrentTime/Queries',
                 headers: { 'Content-Type': 'application/json' }
             });
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Clockwork.Business.Interfaces;
 using Clockwork.Business.Models;
@@ -16,12 +17,18 @@ namespace Clockwork.Business.Services
             _mapper = mapper;
         }
 
-        public CurrentTimeQuery Read(string clientIp)
+        public CurrentTimeQuery Read(string clientIp, string offSet)
         {
+
             var currentTimeQuery = new CurrentTimeQuery
             {
                 ClientIp = clientIp
             };
+
+            TimeSpan convertedOffSet;
+            if (TimeSpan.TryParse(offSet, out convertedOffSet))
+                currentTimeQuery.Offset = convertedOffSet;
+
             var currentTimeQueryEntity = _mapper.Map<Data.Entities.CurrentTimeQuery>(currentTimeQuery);
             currentTimeQueryEntity = _iDataServiceCurrentTimeQuery.Read(currentTimeQueryEntity);
 

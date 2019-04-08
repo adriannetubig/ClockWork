@@ -1,8 +1,9 @@
 ﻿
-    <div ng-app="App" ng-controller="CurrentTimeController as Model">
+    <div ng-app="App" ng-controller="CurrentTimeController as Model" ng-init="Model.PopulateTimeZones()">
         <h2>AWH Clockwork Project @ViewData["Version"] on @ViewData["Runtime"]!</h2>
 
         <button class="btn btn-primary" ng-click="Model.GetCurrentTime()">Get the time</button>
+        <select ng-model="Model.SelectedBaseUtcOffset" ng-options="timeZone.BaseUtcOffset as timeZone.DisplayName for timeZone in Model.TimeZones"></select>
         <div class="row">
             <div class="col-sm">
                 <div class="row">
@@ -79,4 +80,6 @@
                 </tbody>
             </table>
         </div>
+
+        {{Model.selectedTimeZone}}
     </div>

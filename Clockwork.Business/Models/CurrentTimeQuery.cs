@@ -15,8 +15,10 @@ namespace Clockwork.Business.Models
             {
                 if (_time.HasValue)
                     return _time.Value;
+                else if (Offset.HasValue)
+                    return UTCTime.Add(Offset.Value);
                 else
-                    return DateTime.Now;
+                    return TimeZoneInfo.ConvertTimeToUtc(UTCTime);
             }
             set
             {
@@ -27,15 +29,16 @@ namespace Clockwork.Business.Models
         {
             get
             {
-                if (_uTCTime.HasValue)
-                    return _time.Value;
-                else
+                if (!_uTCTime.HasValue)
                     return DateTime.UtcNow;
+                else
+                    return _uTCTime.Value;
             }
             set
             {
                 _uTCTime = value;
             }
         }
+        public TimeSpan? Offset { get; set; }
     }
 }

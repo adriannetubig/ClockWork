@@ -1,40 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Clockwork.Business.Interfaces;
-using Clockwork.Data.Services;
-using Clockwork.Business.Services;
-using Clockwork.Data.Interfaces;
-using AutoMapper;
+using System;
 
 namespace Clockwork.API.Controllers
 {
     [Route("api/[controller]")]
-    public class CurrentTimeController : Controller
+    public class TimeZonesController : Controller
     {
-        private readonly IBusinessServiceCurrentTimeQuery _iBusinessServiceCurrentTimeQuery;
-        public CurrentTimeController()
+        [HttpPost]
+        public IActionResult TimeZones()
         {
-            IDataServiceCurrentTimeQuery iDataServiceCurrentTimeQuery = new DataServiceCurrentTimeQuery();
-
-            var mapperConfiguration = new MapperConfiguration(cfg => { });
-            IMapper mapper = new Mapper(mapperConfiguration);
-
-            var businessServiceCurrentTimeQuery = new BusinessServiceCurrentTimeQuery(iDataServiceCurrentTimeQuery, mapper);
-
-            _iBusinessServiceCurrentTimeQuery = businessServiceCurrentTimeQuery;
-        }
-
-        [HttpGet]
-        public IActionResult Read()
-        {
-            var ipAddress = HttpContext.Connection.RemoteIpAddress.ToString();
-
-            return Ok(_iBusinessServiceCurrentTimeQuery.Read(ipAddress));
-        }
-
-        [HttpPost("Queries")]
-        public IActionResult Queries()
-        {
-            return Ok(_iBusinessServiceCurrentTimeQuery.Read());
+            return Ok(TimeZoneInfo.GetSystemTimeZones());
         }
     }
 }
